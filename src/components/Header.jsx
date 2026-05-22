@@ -29,7 +29,7 @@ export default function Header({ searchQuery, setSearchQuery, onCartClick, onLog
             <Search className="absolute left-4 w-5 h-5 text-neutral-400" />
             <input
               type="text"
-              placeholder="Search 'Guduchi', 'Kapur', 'Atta', 'Tomatoes' or 'Milk'..."
+              placeholder="Search 'Rice', 'Kapur', 'Atta', 'Sugar' or 'Salt'..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-2.5 bg-neutral-100/90 text-sm border-0 rounded-xl text-neutral-800 placeholder-neutral-400 focus:bg-white focus:ring-2 focus:ring-[#0c831f]/20 focus:outline-none transition-all duration-200 shadow-inner font-medium"

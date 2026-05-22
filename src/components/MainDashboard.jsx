@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { products, categories as activeCategoriesList } from '../data/products';
 import ProductCard from './ProductCard';
 import Sidebar from './Sidebar';
-import { ArrowLeft, Printer, HeartPulse, Dog, Baby } from 'lucide-react';
+import { ArrowLeft, Flame, HeartPulse, Cookie, Baby } from 'lucide-react';
 
 export default function MainDashboard({ activeCategory, setActiveCategory, searchQuery, setSearchQuery }) {
   const [toastMessage, setToastMessage] = useState(null);
@@ -24,270 +24,97 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
   // List of 20 categories including active and coming-soon categories
   const homeCategories = [
     {
-      id: 'veg-fruits',
-      name: 'Vegetables & Fruits',
-      isActive: true,
-      color: 'from-emerald-400 to-green-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="10" cy="13" r="5" fill="rgba(255,255,255,0.2)" />
-          <circle cx="15" cy="13" r="5" fill="rgba(255,255,255,0.2)" />
-          <path d="M12 8c.5-1.5 1.5-2.5 3-2.5" />
-          <path d="M12 8c-1 .5-2 1-2 2" />
-        </svg>
-      )
-    },
-    {
       id: 'atta-dal',
       name: 'Atta, Rice & Dal',
       isActive: true,
-      color: 'from-amber-300 to-yellow-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2v20M8 5a4 4 0 0 1 4 4M16 5a4 4 0 0 0-4 4M8 11a4 4 0 0 1 4 4M16 11a4 4 0 0 0-4 4" />
-        </svg>
-      )
+      image: '/images/categories/atta_dal.png'
     },
     {
       id: 'puja-essentials',
       name: 'Puja Path',
       isActive: true,
-      color: 'from-purple-400 to-indigo-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8" />
-          <circle cx="12" cy="12" r="3.5" fill="rgba(255,255,255,0.2)" />
-        </svg>
-      )
+      image: '/images/categories/puja_essentials.png'
     },
     {
       id: 'jadi-bootis',
       name: 'Jadi Bootis',
       isActive: true,
-      color: 'from-teal-400 to-emerald-600',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 22 2c-2.5 5-3 6.5-4.1 12.2A7 7 0 0 1 11 20z" fill="rgba(255,255,255,0.2)" />
-          <path d="M9 22l2.5-2.5" />
-        </svg>
-      )
+      image: '/images/categories/jadi_bootis.png'
     },
     {
-      id: 'snacks-drinks',
-      name: 'Snacks & Drinks',
+      id: 'biscuits-chocolates',
+      name: 'Biscuits & Chocolates',
       isActive: true,
-      color: 'from-red-400 to-pink-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="6" width="14" height="14" rx="2" fill="rgba(255,255,255,0.2)" />
-          <circle cx="12" cy="13" r="2.5" />
-          <path d="M12 3v3" />
-        </svg>
-      )
+      image: '/images/categories/biscuits_chocolates.png'
     },
     {
-      id: 'household',
-      name: 'Household',
-      isActive: true,
-      color: 'from-blue-400 to-sky-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="rgba(255,255,255,0.2)" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-      )
-    },
-    {
-      id: 'dairy-bread',
-      name: 'Dairy & Bread',
+      id: 'snacks-bhujia',
+      name: 'Snacks & Bhujia',
       isActive: false,
-      color: 'from-sky-300 to-blue-400',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="6" y="2" width="12" height="20" rx="2" fill="rgba(255,255,255,0.2)" />
-          <line x1="6" y1="18" x2="18" y2="18" />
-          <line x1="6" y1="13" x2="18" y2="13" />
-        </svg>
-      )
+      image: '/images/categories/snacks_bhujia.png'
     },
     {
-      id: 'munchies',
-      name: 'Munchies',
+      id: 'toffees-mints',
+      name: 'Toffees & Mints',
       isActive: false,
-      color: 'from-orange-400 to-red-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5 3h14l-2 18H7L5 3z" fill="rgba(255,255,255,0.2)" />
-          <path d="M8 9s2 1 4 0 4 0 4 0" />
-        </svg>
-      )
-    },
-    {
-      id: 'bakery',
-      name: 'Bakery & Cookies',
-      isActive: false,
-      color: 'from-amber-500 to-amber-700',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="8" fill="rgba(255,255,255,0.2)" />
-          <circle cx="12" cy="12" r="2" />
-        </svg>
-      )
-    },
-    {
-      id: 'sweets',
-      name: 'Ice Creams',
-      isActive: false,
-      color: 'from-pink-400 to-rose-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2a5 5 0 0 0-5 5v3h10V7a5 5 0 0 0-5-5z" fill="rgba(255,255,255,0.2)" />
-          <path d="M6 10l6 12 6-12" />
-        </svg>
-      )
-    },
-    {
-      id: 'instant-food',
-      name: 'Instant Food',
-      isActive: false,
-      color: 'from-yellow-400 to-amber-600',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 11h18v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-7z" fill="rgba(255,255,255,0.2)" />
-          <path d="M8 11V7M12 11V5M16 11V6" />
-        </svg>
-      )
+      image: '/images/categories/toffees_mints.png'
     },
     {
       id: 'tea-coffee',
       name: 'Tea & Coffee',
       isActive: false,
-      color: 'from-amber-600 to-yellow-800',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" fill="rgba(255,255,255,0.2)" />
-          <path d="M6 2v2M10 2v2M14 2v2" />
-        </svg>
-      )
+      image: '/images/categories/tea_coffee.png'
     },
     {
-      id: 'personal-care',
-      name: 'Personal Care',
+      id: 'body-care',
+      name: 'Body Care',
       isActive: false,
-      color: 'from-teal-300 to-cyan-500',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="6" y="8" width="12" height="13" rx="2" fill="rgba(255,255,255,0.2)" />
-          <path d="M9 8V5a3 3 0 0 1 6 0v3" />
-        </svg>
-      )
+      image: '/images/categories/body_care.png'
     },
     {
       id: 'baby-care',
       name: 'Baby Care',
       isActive: false,
-      color: 'from-indigo-300 to-purple-400',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="10" r="4" fill="rgba(255,255,255,0.2)" />
-          <path d="M12 14v4M9 20h6" />
-        </svg>
-      )
+      image: '/images/categories/baby_care.png'
     },
     {
-      id: 'pet-care',
-      name: 'Pet Care',
+      id: 'soap-surf',
+      name: 'Soap & Surf',
       isActive: false,
-      color: 'from-yellow-500 to-orange-600',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="13" r="4" fill="rgba(255,255,255,0.2)" />
-          <circle cx="7" cy="8" r="1.5" />
-          <circle cx="17" cy="8" r="1.5" />
-          <circle cx="12" cy="6" r="1.5" />
-        </svg>
-      )
-    },
-    {
-      id: 'meat-seafood',
-      name: 'Meat & Seafood',
-      isActive: false,
-      color: 'from-red-500 to-rose-700',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2A10 10 0 0 0 2 12c0 4.4 3.6 8 8 8h2a10 10 0 0 0 10-10V2z" fill="rgba(255,255,255,0.2)" />
-          <circle cx="8" cy="8" r="1.5" />
-        </svg>
-      )
+      image: '/images/categories/soap_surf.png'
     },
     {
       id: 'cleaners',
       name: 'Cleaners',
       isActive: false,
-      color: 'from-teal-255 to-emerald-450',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 21h10V11H7v10z" fill="rgba(255,255,255,0.2)" />
-          <path d="M12 11V7M9 7h6M10 4h4" />
-        </svg>
-      )
-    },
-    {
-      id: 'stationery',
-      name: 'Stationery',
-      isActive: false,
-      color: 'from-purple-300 to-pink-400',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill="rgba(255,255,255,0.2)" />
-        </svg>
-      )
+      image: '/images/categories/cleaners.png'
     },
     {
       id: 'pharma',
       name: 'Pharma',
       isActive: false,
-      color: 'from-cyan-400 to-blue-600',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="5" width="14" height="14" rx="7" fill="rgba(255,255,255,0.2)" transform="rotate(45 12 12)" />
-          <line x1="8.5" y1="8.5" x2="15.5" y2="15.5" />
-        </svg>
-      )
-    },
-    {
-      id: 'gourmet',
-      name: 'Gourmet',
-      isActive: false,
-      color: 'from-lime-400 to-green-600',
-      svg: (
-        <svg viewBox="0 0 24 24" className="w-9 h-9 text-white fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 15 8.5 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 8.5 12 2" fill="rgba(255,255,255,0.2)" />
-        </svg>
-      )
+      image: '/images/categories/pharma.png'
     }
   ];
 
   // List of promo cards
   const promoCards = [
     {
-      name: 'Printouts & Utilities',
-      desc: 'Instant high-quality printing',
-      icon: Printer,
+      name: 'Pooja Items',
+      desc: 'Incense, diya, camphor & more',
+      icon: Flame,
       color: 'bg-blue-50/80 border-blue-100 text-blue-700 hover:bg-blue-100/50'
     },
     {
-      name: 'Pharmacy Essentials',
+      name: 'Ayurvedic Herbs & basic First-aid',
       desc: 'Wellness, first-aid & OTC products',
       icon: HeartPulse,
       color: 'bg-rose-50/80 border-rose-100 text-rose-700 hover:bg-rose-100/50'
     },
     {
-      name: 'Pet Supplies',
-      desc: 'Premium pet food & items',
-      icon: Dog,
+      name: 'Biscuits & Snacks',
+      desc: 'Chocolates, chips & quick bites',
+      icon: Cookie,
       color: 'bg-amber-50/80 border-amber-100 text-amber-700 hover:bg-amber-100/50'
     },
     {
@@ -335,25 +162,22 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
       {!isBrowsingOrSearching ? (
         // --- HOMEPAGE VIEW ---
         <div className="flex flex-col gap-10">
-          
+
           {/* Hero Banner Section */}
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-emerald-800 to-green-700 text-white min-h-[300px] md:min-h-[340px] flex items-center shadow-lg border border-emerald-950/20 group">
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
             <div className="relative z-10 px-8 md:px-16 py-12 max-w-xl flex flex-col items-start gap-4">
-              <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-widest">
-                ⚡ 10-Minute Instant Delivery
-              </span>
               <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-none">
                 Rahul <span className="text-yellow-400">General Store</span>
               </h1>
               <p className="text-xs md:text-sm text-emerald-100/90 font-medium leading-relaxed max-w-sm">
-                Order fresh vegetables, daily puja essentials, whole grains, and raw medicinal herbs at unbeatable prices.
+                Order your daily <br /> Kirana, Pooja Items & Natural Ayurvedic Herbs at Best Prices.
               </p>
               <button
                 onClick={() => setActiveCategory('veg-fruits')}
                 className="mt-2 bg-yellow-400 hover:bg-yellow-350 text-neutral-900 px-7 py-3.5 rounded-xl font-extrabold text-xs tracking-wide shadow-lg shadow-yellow-950/20 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
               >
-                Shop Fresh Vegetables
+                Premium Food, Family First.<br /> <br /> Shop now
               </button>
             </div>
             {/* Right side banner image */}
@@ -361,7 +185,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
               <img
                 src="/hero_grocery.png"
                 alt="Fresh Grocery Hero"
-                className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transform transition-transform duration-700 "
               />
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-900 via-transparent to-transparent" />
             </div>
@@ -410,11 +234,14 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                   className="flex flex-col items-center group cursor-pointer"
                 >
                   <div
-                    className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 group-hover:shadow-md relative overflow-hidden`}
+                    className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 group-hover:shadow-md relative overflow-hidden border border-neutral-200/50 bg-neutral-50"
                   >
-                    {/* Visual flare inside the circle */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.15),transparent)]" />
-                    {cat.svg}
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-neutral-950/5 group-hover:bg-transparent transition-colors duration-200" />
                   </div>
                   <span className="text-[10px] md:text-[11px] font-black text-neutral-700 group-hover:text-[#0c831f] text-center leading-snug mt-2 line-clamp-2 px-1 transition-colors">
                     {cat.name}
@@ -486,7 +313,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                   </div>
                   <h3 className="font-extrabold text-neutral-800 text-sm mb-1.5">No products found</h3>
                   <p className="text-neutral-500 text-xs font-semibold leading-relaxed max-w-[280px] mb-6">
-                    We couldn't find anything matching "{searchQuery}". Try searching for popular items like tomatoes, kapur, or atta.
+                    We couldn't find anything matching "{searchQuery}". Try searching for popular items like Rice, kapur, or atta.
                   </p>
                   <button
                     onClick={() => {
