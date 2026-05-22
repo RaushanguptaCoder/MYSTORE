@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export default function CartDrawer({ isOpen, onClose, currentAddress = "Indiranagar, Bengaluru" }) {
-  const { cartItems, addToCart, removeFromCart, updateQuantity, clearCart, totalPrice, totalMrp, savings } = useCart();
+export default function CartDrawer({ isOpen, onClose }) {
+  const { cartItems, addToCart, removeFromCart, clearCart, totalPrice, savings } = useCart();
   const [showUpiModal, setShowUpiModal] = useState(false);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+  const [address, setAddress] = useState(() => localStorage.getItem('userAddress') || '');
+  const [addressError, setAddressError] = useState(false);
 
   if (!isOpen) return null;
 
@@ -15,10 +17,14 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
 
   // WhatsApp Order Text compiler
   const handleWhatsAppCheckout = () => {
-    const phone = "919999999999"; // Placeholder number
+    if (!address.trim()) {
+      setAddressError(true);
+      return;
+    }
+    const phone = "919631871702"; // Placeholder number
     let orderText = `*🛒 NEW ORDER - GROCEFAST*\n`;
     orderText += `----------------------------------\n`;
-    orderText += `📍 *Delivery Address:* ${currentAddress}\n`;
+    orderText += `📍 *Delivery Address:* ${address.trim()}\n`;
     orderText += `----------------------------------\n\n`;
     orderText += `*Items Ordered:*\n`;
 
@@ -46,6 +52,10 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
   };
 
   const handleSimulateUpi = () => {
+    if (!address.trim()) {
+      setAddressError(true);
+      return;
+    }
     setShowUpiModal(true);
   };
 
@@ -62,14 +72,14 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-neutral-900/60 backdrop-blur-xs z-50 transition-opacity duration-300 animate-in fade-in"
         onClick={onClose}
       />
 
       {/* Drawer Panel */}
       <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] bg-neutral-50 shadow-2xl z-50 flex flex-col justify-between transition-drawer animate-in slide-in-from-right duration-300">
-        
+
         {/* Header */}
         <div className="bg-white px-5 py-4 border-b border-neutral-200 flex items-center justify-between shrink-0 shadow-xs">
           <div className="flex items-center gap-2.5">
@@ -79,7 +89,7 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
               {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'}
             </span>
           </div>
-          <button 
+          <button
             onClick={onClose}
             className="p-1.5 rounded-full hover:bg-neutral-100 text-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer"
           >
@@ -98,7 +108,7 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
               <p className="text-neutral-400 text-xs font-semibold leading-relaxed max-w-[240px]">
                 Add items from our premium selection of groceries, puja path, and jadi bootis.
               </p>
-              <button 
+              <button
                 onClick={onClose}
                 className="mt-6 px-6 py-2.5 bg-[#0c831f] text-white rounded-xl text-xs font-extrabold tracking-wider uppercase cursor-pointer hover:bg-[#0a6d1a] transition-colors"
               >
@@ -122,7 +132,7 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
               <div className="bg-white border border-neutral-200/60 rounded-2xl p-4 flex flex-col gap-4 shadow-xs">
                 <div className="flex items-center justify-between border-b border-neutral-100 pb-2">
                   <span className="text-xs font-black text-neutral-400 uppercase tracking-wider">Item Details</span>
-                  <button 
+                  <button
                     onClick={clearCart}
                     className="text-xs font-bold text-red-500 hover:text-red-700 flex items-center gap-1 transition-colors cursor-pointer"
                   >
@@ -137,9 +147,9 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
                     return (
                       <div key={itemKey} className={`flex items-start justify-between gap-3 ${index > 0 ? 'pt-4' : ''}`}>
                         {/* Item image */}
-                        <img 
-                          src={item.product.image} 
-                          alt={item.product.name} 
+                        <img
+                          src={item.product.image}
+                          alt={item.product.name}
                           className="w-10 h-10 object-contain rounded-lg border border-neutral-100 shrink-0 bg-neutral-50"
                         />
 
@@ -173,7 +183,7 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
                               <Plus className="w-3 h-3 text-neutral-500" />
                             </button>
                           </div>
-                          
+
                           {/* Unit Total Price */}
                           <span className="text-xs font-black text-neutral-900">
                             ₹{item.variant.price * item.quantity}
@@ -185,21 +195,43 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
                 </div>
               </div>
 
-              {/* Delivery Address Summary (Quick Peek) */}
-              <div className="bg-white border border-neutral-200/60 rounded-2xl p-3 flex items-start gap-2.5 shadow-xs">
-                <div className="bg-neutral-100 p-2 rounded-xl text-neutral-500 mt-0.5 shrink-0">
-                  📍
+              {/* Delivery Address Fill Option */}
+              <div className="bg-white border border-neutral-200/60 rounded-2xl p-4 flex flex-col gap-3 shadow-xs">
+                <div className="flex items-center gap-2 text-xs font-black text-neutral-400 uppercase tracking-wider border-b border-neutral-100 pb-2">
+                  <span className="text-base shrink-0">📍</span>
+                  <span>Delivery Address</span>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-black text-neutral-400 uppercase tracking-wide">Delivering To</span>
-                  <span className="text-xs font-bold text-neutral-700 mt-0.5">{currentAddress}</span>
+                
+                <div className="relative">
+                  <textarea
+                    rows="3"
+                    placeholder="Enter full delivery address (e.g. Flat/House no, building, street, landmark, city, pincode)..."
+                    value={address}
+                    onChange={(e) => {
+                      setAddress(e.target.value);
+                      localStorage.setItem('userAddress', e.target.value);
+                      if (e.target.value.trim()) {
+                        setAddressError(false);
+                      }
+                    }}
+                    className={`w-full text-xs border rounded-xl p-3 bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all font-medium text-neutral-800 placeholder-neutral-400 resize-none ${
+                      addressError 
+                        ? 'border-red-300 focus:ring-red-200/50 focus:border-red-500' 
+                        : 'border-neutral-200 focus:ring-[#0c831f]/20 focus:border-[#0c831f]'
+                    }`}
+                  />
+                  {addressError && (
+                    <span className="text-[10px] text-red-500 font-bold block mt-1">
+                      ⚠️ Delivery address is required to proceed.
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Billing Summary */}
               <div className="bg-white border border-neutral-200/60 rounded-2xl p-4 flex flex-col gap-3 shadow-xs mb-8">
                 <span className="text-xs font-black text-neutral-400 uppercase tracking-wider border-b border-neutral-100 pb-2">Bill Summary</span>
-                
+
                 <div className="flex items-center justify-between text-xs font-bold text-neutral-500">
                   <span>Item Total</span>
                   <span className="text-neutral-800">₹{totalPrice}</span>
@@ -258,7 +290,7 @@ export default function CartDrawer({ isOpen, onClose, currentAddress = "Indirana
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-neutral-950/80 backdrop-blur-xs" onClick={() => setShowUpiModal(false)} />
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full relative z-10 shadow-2xl border border-neutral-100 text-center animate-in zoom-in-95 duration-200">
-            <button 
+            <button
               onClick={() => setShowUpiModal(false)}
               className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600 cursor-pointer"
             >

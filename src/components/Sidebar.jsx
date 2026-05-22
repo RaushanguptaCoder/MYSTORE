@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Apple, Sparkles, Leaf, Cookie, Home, Wheat } from 'lucide-react';
 
 const iconMap = {

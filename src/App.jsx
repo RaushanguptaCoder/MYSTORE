@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
-import { CartProvider } from './context/CartContext';
+import { useState } from 'react';
 import Header from './components/Header';
 import MainDashboard from './components/MainDashboard';
 import CartDrawer from './components/CartDrawer';
+import { CartProvider } from './context/CartContext';
 
 function AppContent() {
-  const [activeCategory, setActiveCategory] = useState('veg-fruits');
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('home');
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const handleLogoClick = () => {
+    setActiveCategory('home');
+    setSearchQuery('');
+  };
+
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col font-sans selection:bg-emerald-100 selection:text-emerald-900">
-      {/* Sticky Header */}
+    <div className="min-h-screen bg-neutral-50 flex flex-col font-sans">
+      {/* Header */}
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onCartClick={() => setIsCartOpen(true)}
+        onLogoClick={handleLogoClick}
       />
 
-      {/* Main Two-Column Layout */}
-      <MainDashboard
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
+      {/* Main Content Dashboard */}
+      <main className="flex-1">
+        <MainDashboard
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+      </main>
 
-      {/* Slide-out Checkout Drawer */}
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const CartContext = createContext();
 
@@ -11,19 +12,19 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
+  // Load cart from localStorage using lazy initializer
+  const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem('blinkit_cart');
     if (savedCart) {
       try {
-        setCartItems(JSON.parse(savedCart));
+        return JSON.parse(savedCart);
       } catch (e) {
         console.error("Failed to parse cart items from storage", e);
       }
     }
-  }, []);
+    return [];
+  });
+
 
   // Save cart to localStorage on changes
   useEffect(() => {
