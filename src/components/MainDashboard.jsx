@@ -33,13 +33,13 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
       id: 'puja-essentials',
       name: 'Puja Path',
       isActive: true,
-      image: '/images/categories/puja_essentials.png'
+      image: '/images/categories/puja_essentials.jpg'
     },
     {
       id: 'jadi-bootis',
-      name: 'Jadi Bootis',
+      name: 'Jadi Bootis & Spices',
       isActive: true,
-      image: '/images/categories/jadi_bootis.png'
+      image: '/images/categories/jadi_booties.avif'
     },
     {
       id: 'biscuits-chocolates',
@@ -48,8 +48,8 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
       image: '/images/categories/biscuits_chocolates.png'
     },
     {
-      id: 'snacks-bhujia',
-      name: 'Snacks & Bhujia',
+      id: 'snacks-munchies',
+      name: 'Snacks & Munchies',
       isActive: false,
       image: '/images/categories/snacks_bhujia.png'
     },
@@ -61,7 +61,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
     },
     {
       id: 'tea-coffee',
-      name: 'Tea & Coffee',
+      name: 'Tea, Coffee & Milk',
       isActive: false,
       image: '/images/categories/tea_coffee.png'
     },
