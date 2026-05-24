@@ -67,7 +67,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
     },
     {
       id: 'body-care',
-      name: 'Body Care',
+      name: 'Personal Care',
       isActive: false,
       image: '/images/categories/body_care.png'
     },
@@ -78,16 +78,22 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
       image: '/images/categories/baby_care.png'
     },
     {
-      id: 'soap-surf',
-      name: 'Soap & Surf',
+      id: 'masala-oil',
+      name: 'Masala, Oil & More',
       isActive: false,
-      image: '/images/categories/soap_surf.png'
+      image: '/images/categories/masala_oil.png'
     },
     {
       id: 'cleaners',
-      name: 'Cleaners',
+      name: 'Cleaning Essentials',
       isActive: false,
       image: '/images/categories/cleaners.png'
+    },
+    {
+      id: 'breakfast-instant-food',
+      name: 'Breakfast & Instant Food',
+      isActive: false,
+      image: '/images/categories/breakfast_instant_food.png'
     },
     {
       id: 'pharma',
