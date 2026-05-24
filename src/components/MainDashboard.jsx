@@ -170,14 +170,14 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
               <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-none">
                 Rahul <span className="text-yellow-400">General Store</span>
               </h1>
-              <p className="text-xs md:text-sm text-emerald-100/90 font-medium leading-relaxed max-w-sm">
+              <p className="text-s md:text-sm text-emerald-100/90 font-medium leading-relaxed max-w-sm">
                 Order your daily <br /> Kirana, Pooja Items & Natural Ayurvedic Herbs at Best Prices.
               </p>
               <button
                 onClick={() => setActiveCategory('veg-fruits')}
-                className="mt-2 bg-yellow-400 hover:bg-yellow-350 text-neutral-900 px-7 py-3.5 rounded-xl font-extrabold text-xs tracking-wide shadow-lg shadow-yellow-950/20 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+                className="mt-2 bg-white hover:bg-white text-neutral-900 px-10 py-5 rounded-xl font-extrabold text-sm tracking-wide shadow-lg shadow-white-950/20 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
               >
-                Premium Food, Family First.<br /> <br /> Shop now
+                Shop now
               </button>
             </div>
             {/* Right side banner image */}
@@ -193,7 +193,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
 
           {/* Promo Services Section */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-base md:text-lg font-black text-neutral-800 tracking-tight">More instant services</h2>
+            <h1 className="text-base md:text-lg font-black text-neutral-800 tracking-tight">More instant services</h1>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {promoCards.map((card) => {
                 const CardIcon = card.icon;
@@ -226,7 +226,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
             <div className="flex items-center justify-between">
               <h2 className="text-base md:text-lg font-black text-neutral-800 tracking-tight">Shop by Category</h2>
             </div>
-            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-x-4 gap-y-6">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-x-4 gap-y-6">
               {homeCategories.map((cat) => (
                 <div
                   key={cat.id}
@@ -234,7 +234,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                   className="flex flex-col items-center group cursor-pointer"
                 >
                   <div
-                    className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 group-hover:shadow-md relative overflow-hidden border border-neutral-200/50 bg-neutral-50"
+                    className="w-16 h-16 md:w-26 md:h-26 rounded-2xl flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 group-hover:shadow-md relative overflow-hidden border border-neutral-200/50 bg-neutral-50"
                   >
                     <img
                       src={cat.image}
@@ -243,7 +243,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                     />
                     <div className="absolute inset-0 bg-neutral-950/5 group-hover:bg-transparent transition-colors duration-200" />
                   </div>
-                  <span className="text-[10px] md:text-[11px] font-black text-neutral-700 group-hover:text-[#0c831f] text-center leading-snug mt-2 line-clamp-2 px-1 transition-colors">
+                  <span className="text-[10px] md:text-[15px] font-black text-neutral-700 group-hover:text-[#0c831f] text-center leading-snug mt-2 line-clamp-2 px-1 transition-colors">
                     {cat.name}
                   </span>
                 </div>
