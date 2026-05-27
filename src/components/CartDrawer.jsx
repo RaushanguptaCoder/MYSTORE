@@ -22,7 +22,7 @@ export default function CartDrawer({ isOpen, onClose }) {
       return;
     }
     const phone = "919631871702"; // Placeholder number
-    let orderText = `*🛒 NEW ORDER - GROCEFAST*\n`;
+    let orderText = `*🛒 NEW ORDER - Rahul General Store *\n`;
     orderText += `----------------------------------\n`;
     orderText += `📍 *Delivery Address:* ${address.trim()}\n`;
     orderText += `----------------------------------\n\n`;
@@ -44,7 +44,7 @@ export default function CartDrawer({ isOpen, onClose }) {
       orderText += `\n🎁 *Total Savings: ₹${savings}*\n`;
     }
     orderText += `----------------------------------\n`;
-    orderText += `Sent via Grocefast Quick-Commerce app.`;
+    orderText += `Sent via Rahul general Store Quick-Commerce site.`;
 
     const encodedText = encodeURIComponent(orderText);
     const whatsappUrl = `https://wa.me/${phone}?text=${encodedText}`;
@@ -201,7 +201,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                   <span className="text-base shrink-0">📍</span>
                   <span>Delivery Address</span>
                 </div>
-                
+
                 <div className="relative">
                   <textarea
                     rows="3"
@@ -214,11 +214,10 @@ export default function CartDrawer({ isOpen, onClose }) {
                         setAddressError(false);
                       }
                     }}
-                    className={`w-full text-xs border rounded-xl p-3 bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all font-medium text-neutral-800 placeholder-neutral-400 resize-none ${
-                      addressError 
-                        ? 'border-red-300 focus:ring-red-200/50 focus:border-red-500' 
-                        : 'border-neutral-200 focus:ring-[#0c831f]/20 focus:border-[#0c831f]'
-                    }`}
+                    className={`w-full text-xs border rounded-xl p-3 bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all font-medium text-neutral-800 placeholder-neutral-400 resize-none ${addressError
+                      ? 'border-red-300 focus:ring-red-200/50 focus:border-red-500'
+                      : 'border-neutral-200 focus:ring-[#0c831f]/20 focus:border-[#0c831f]'
+                      }`}
                   />
                   {addressError && (
                     <span className="text-[10px] text-red-500 font-bold block mt-1">
@@ -273,14 +272,6 @@ export default function CartDrawer({ isOpen, onClose }) {
                 <ArrowRight className="w-4 h-4 text-emerald-100" />
               </div>
             </button>
-
-            {/* Secondary UPI Simulation */}
-            <button
-              onClick={handleSimulateUpi}
-              className="w-full text-center py-2.5 border border-neutral-300 hover:border-neutral-400 text-neutral-700 hover:bg-neutral-50 rounded-xl font-bold text-xs cursor-pointer transition-colors active:scale-98"
-            >
-              Simulate Instant UPI Payment
-            </button>
           </div>
         )}
       </div>
@@ -297,87 +288,26 @@ export default function CartDrawer({ isOpen, onClose }) {
               <X className="w-5 h-5" />
             </button>
 
-            <span className="inline-block bg-emerald-50 text-[#0c831f] px-3.5 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase mb-4">
-              Simulated UPI Gateway
-            </span>
 
-            <h3 className="text-lg font-black text-neutral-900">Scan to Pay ₹{grandTotal}</h3>
-            <p className="text-xs text-neutral-400 font-semibold mt-1">Scan the QR below with any UPI App (GPay, PhonePe, Paytm)</p>
 
-            {/* Dummy QR Code Vector Graphic */}
-            <div className="my-6 mx-auto w-48 h-48 bg-neutral-100 border-2 border-neutral-200 rounded-2xl flex items-center justify-center p-3 relative overflow-hidden shadow-inner">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full text-neutral-800">
-                {/* QR Pattern Representation */}
-                <rect x="0" y="0" width="25" height="25" fill="currentColor" />
-                <rect x="3" y="3" width="19" height="19" fill="white" />
-                <rect x="7" y="7" width="11" height="11" fill="currentColor" />
+          </div>
 
-                <rect x="75" y="0" width="25" height="25" fill="currentColor" />
-                <rect x="78" y="3" width="19" height="19" fill="white" />
-                <rect x="82" y="7" width="11" height="11" fill="currentColor" />
-
-                <rect x="0" y="75" width="25" height="25" fill="currentColor" />
-                <rect x="3" y="78" width="19" height="19" fill="white" />
-                <rect x="7" y="82" width="11" height="11" fill="currentColor" />
-
-                {/* Random Dots */}
-                <rect x="35" y="10" width="10" height="5" fill="currentColor" />
-                <rect x="50" y="5" width="5" height="15" fill="currentColor" />
-                <rect x="60" y="15" width="10" height="10" fill="currentColor" />
-                <rect x="40" y="30" width="5" height="5" fill="currentColor" />
-                <rect x="15" y="45" width="10" height="10" fill="currentColor" />
-                <rect x="30" y="45" width="20" height="5" fill="currentColor" />
-                <rect x="55" y="35" width="5" height="25" fill="currentColor" />
-                <rect x="70" y="45" width="15" height="5" fill="currentColor" />
-                <rect x="10" y="60" width="5" height="10" fill="currentColor" />
-                <rect x="35" y="60" width="15" height="15" fill="currentColor" />
-                <rect x="60" y="65" width="10" height="5" fill="currentColor" />
-                <rect x="75" y="60" width="5" height="10" fill="currentColor" />
-                <rect x="85" y="70" width="10" height="15" fill="currentColor" />
-                <rect x="30" y="85" width="15" height="5" fill="currentColor" />
-                <rect x="55" y="80" width="10" height="15" fill="currentColor" />
-              </svg>
-              {/* Center icon */}
-              <div className="absolute inset-0 m-auto w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center text-[10px] font-black text-neutral-800 shadow-sm">
-                UPI
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <button
-                onClick={completeUpiPayment}
-                className="w-full bg-[#0c831f] hover:bg-[#0a6d1a] text-white py-3 rounded-xl font-bold text-xs cursor-pointer shadow-md transition-colors"
-              >
-                Simulate Successful Payment Response
-              </button>
-              <button
-                onClick={() => setShowUpiModal(false)}
-                className="w-full text-neutral-500 hover:text-neutral-700 py-1.5 font-bold text-xs cursor-pointer"
-              >
-                Cancel
-              </button>
-            </div>
+          <div className="flex flex-col gap-2">
+            <button
+              onClick={completeUpiPayment}
+              className="w-full bg-[#0c831f] hover:bg-[#0a6d1a] text-white py-3 rounded-xl font-bold text-xs cursor-pointer shadow-md transition-colors"
+            >
+              Simulate Successful Payment Response
+            </button>
+            <button
+              onClick={() => setShowUpiModal(false)}
+              className="w-full text-neutral-500 hover:text-neutral-700 py-1.5 font-bold text-xs cursor-pointer"
+            >
+              Cancel
+            </button>
           </div>
         </div>
-      )}
 
-      {/* Order Placed Success Toast */}
-      {isOrderPlaced && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs" />
-          <div className="bg-white rounded-3xl p-8 max-w-sm w-full relative z-10 shadow-2xl border border-neutral-100 text-center animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100">
-              <CheckCircle2 className="w-10 h-10 text-[#0c831f]" />
-            </div>
-            <h3 className="text-xl font-black text-neutral-900">Payment Successful!</h3>
-            <p className="text-xs text-neutral-500 font-semibold mt-2 leading-relaxed">
-              Your order has been placed successfully. Preparing delivery.
-            </p>
-            <div className="mt-6 text-xs text-neutral-400 font-bold bg-neutral-50 px-4 py-2 rounded-xl">
-              Simulating redirect to dashboard...
-            </div>
-          </div>
-        </div>
       )}
     </>
   );
