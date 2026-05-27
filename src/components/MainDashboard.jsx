@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { products, categories as activeCategoriesList } from '../data/products';
+import { useProducts } from '../context/ProductContext';
 import ProductCard from './ProductCard';
 import Sidebar from './Sidebar';
 import { ArrowLeft, Flame, HeartPulse, Cookie, Baby } from 'lucide-react';
@@ -108,6 +108,7 @@ const seoContent = {
 };
 
 export default function MainDashboard({ activeCategory, setActiveCategory, searchQuery, setSearchQuery }) {
+  const { products, categories: activeCategoriesList } = useProducts();
   const [activeSubcategory, setActiveSubcategory] = useState('');
 
   // Automatically default activeSubcategory to the first subcategory when activeCategory changes
@@ -247,14 +248,14 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
       desc: 'Chocolates, chips & quick bites',
       color: ' border-amber-100 text-amber-700 hover:bg-amber-100/50',
       categoryId: 'biscuits-chocolates',
-      bgImage: '/images/categories/biscuits_chocolates.png'
+      bgImage: '/images/categories/Biscuits.png'
     },
     {
       name: 'Baby Care',
       desc: 'Soft diapers, formula & toys',
       color: ' border-purple-100 text-purple-700 hover:bg-purple-100/50',
       categoryId: 'baby-care',
-      bgImage: '/images/categories/baby_care.png'
+      bgImage: '/images/categories/Baby.png'
     }
   ];
 

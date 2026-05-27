@@ -1,7 +1,7 @@
 import { useCart } from '../context/CartContext';
-import { Search, ShoppingBag } from 'lucide-react';
+import { Search, ShoppingBag, Shield } from 'lucide-react';
 
-export default function Header({ searchQuery, setSearchQuery, onCartClick, onLogoClick }) {
+export default function Header({ searchQuery, setSearchQuery, onCartClick, onLogoClick, onAdminClick }) {
   const { totalItems, totalPrice } = useCart();
 
   return (
@@ -19,8 +19,6 @@ export default function Header({ searchQuery, setSearchQuery, onCartClick, onLog
               Best Quality Products
             </span>
           </div>
-
-
         </div>
 
         {/* Center: Sticky Instant Search bar */}
@@ -45,9 +43,17 @@ export default function Header({ searchQuery, setSearchQuery, onCartClick, onLog
           </div>
         </div>
 
-        {/* Right: Account icon & Cart Pill Button */}
-        <div className="flex items-center gap-4 shrink-0">
-
+        {/* Right: Owner Portal Button & Cart Pill Button */}
+        <div className="flex items-center gap-3 shrink-0">
+          {/* Owner Portal Shortcut */}
+          <button
+            onClick={onAdminClick}
+            className="flex items-center gap-1.5 text-neutral-650 hover:text-neutral-950 bg-neutral-100 hover:bg-neutral-200/80 px-3.5 py-2.5 rounded-xl text-xs font-extrabold tracking-wide transition-all duration-200 cursor-pointer border border-neutral-200/40"
+            title="Owner Control Panel"
+          >
+            <Shield className="w-4 h-4 text-[#0c831f] shrink-0" />
+            <span className="hidden sm:inline">Owner Portal</span>
+          </button>
 
           {/* Cart Pill */}
           <button
@@ -66,8 +72,7 @@ export default function Header({ searchQuery, setSearchQuery, onCartClick, onLog
           </button>
         </div>
       </div>
-
-
     </header>
   );
 }
+
