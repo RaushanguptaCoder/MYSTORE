@@ -103,7 +103,7 @@ export default function ProductCard({ product }) {
           </div>
 
           {/* Quantitative Button Controller */}
-          <div className="h-9 w-20 flex items-center justify-center shrink-0">
+          <div className="h-8.5 sm:h-9 w-18 sm:w-20 flex items-center justify-center shrink-0">
             {quantity > 0 ? (
               <div className="flex items-center justify-between w-full h-full bg-[#0c831f] text-white rounded-lg shadow-md shadow-emerald-950/10 overflow-hidden font-bold select-none">
                 <button

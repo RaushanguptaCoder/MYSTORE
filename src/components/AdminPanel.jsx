@@ -312,29 +312,30 @@ export default function AdminPanel({ onClose }) {
         // 2. MAIN ADMIN DASHBOARD
         <>
           {/* Top Navbar */}
-          <header className="bg-neutral-950 border-b border-neutral-800 px-6 py-4 sticky top-0 z-30 shadow-md">
+          <header className="bg-neutral-950 border-b border-neutral-800 px-4 sm:px-6 py-4 sticky top-0 z-30 shadow-md">
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <span className="text-xl font-black text-white tracking-tight">
-                  Rahul<span className="text-[#10b981]"> Owner Console</span>
+                <span className="text-lg sm:text-xl font-black text-white tracking-tight">
+                  Rahul<span className="text-[#10b981] hidden sm:inline"> Owner Console</span><span className="text-[#10b981] sm:hidden"> Console</span>
                 </span>
-                <span className="bg-neutral-800 text-neutral-300 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border border-neutral-700 tracking-wider">
+                <span className="bg-neutral-800 text-neutral-300 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border border-neutral-700 tracking-wider hidden sm:inline-block">
                   Live DB
                 </span>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   onClick={onClose}
-                  className="flex items-center gap-2 text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 px-4 py-2 rounded-xl transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 px-3 sm:px-4 py-2 rounded-xl transition-colors cursor-pointer"
                 >
-                  <ArrowLeft className="w-3.5 h-3.5" /> Back to Shop
+                  <ArrowLeft className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Back to Shop</span><span className="sm:hidden">Shop</span>
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 text-xs font-bold bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-900/40 px-4 py-2 rounded-xl transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 text-xs font-bold bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-900/40 px-3 sm:px-4 py-2 rounded-xl transition-colors cursor-pointer"
+                  title="Logout"
                 >
-                  <LogOut className="w-3.5 h-3.5" /> Logout
+                  <LogOut className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Logout</span>
                 </button>
               </div>
             </div>
@@ -344,41 +345,41 @@ export default function AdminPanel({ onClose }) {
           <div className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col md:flex-row gap-6">
 
             {/* Sidebar Navigation */}
-            <aside className="w-full md:w-64 shrink-0 flex flex-col gap-2">
+            <aside className="w-full md:w-64 shrink-0 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none border-b md:border-b-0 border-neutral-800 md:border-none">
               <button
                 onClick={() => { setActiveTab('dashboard'); resetForm(); }}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider text-left transition-all border cursor-pointer ${activeTab === 'dashboard'
+                className={`flex items-center gap-2 sm:gap-3 px-4 py-2.5 sm:py-3 rounded-xl font-bold text-[10px] sm:text-xs uppercase tracking-wider text-left transition-all border cursor-pointer shrink-0 ${activeTab === 'dashboard'
                     ? 'bg-neutral-800 border-neutral-700 text-white font-extrabold shadow-sm'
                     : 'bg-transparent border-transparent text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/40'
                   }`}
               >
-                <LayoutDashboard className="w-4 h-4" /> Dashboard Overview
+                <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Dashboard Overview
               </button>
 
               <button
                 onClick={() => { setActiveTab('inventory'); resetForm(); }}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider text-left transition-all border cursor-pointer ${activeTab === 'inventory'
+                className={`flex items-center gap-2 sm:gap-3 px-4 py-2.5 sm:py-3 rounded-xl font-bold text-[10px] sm:text-xs uppercase tracking-wider text-left transition-all border cursor-pointer shrink-0 ${activeTab === 'inventory'
                     ? 'bg-neutral-800 border-neutral-700 text-white font-extrabold shadow-sm'
                     : 'bg-transparent border-transparent text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/40'
                   }`}
               >
-                <ShoppingBag className="w-4 h-4" /> Manage Inventory
+                <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Manage Inventory
               </button>
 
               <button
                 onClick={() => { resetForm(); setActiveTab('add-product'); }}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-wider text-left transition-all border cursor-pointer ${activeTab === 'add-product' && !editingId
+                className={`flex items-center gap-2 sm:gap-3 px-4 py-2.5 sm:py-3 rounded-xl font-bold text-[10px] sm:text-xs uppercase tracking-wider text-left transition-all border cursor-pointer shrink-0 ${activeTab === 'add-product' && !editingId
                     ? 'bg-neutral-800 border-neutral-700 text-white font-extrabold shadow-sm'
                     : 'bg-transparent border-transparent text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/40'
                   }`}
               >
-                <Plus className="w-4 h-4" /> Add New Product
+                <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Add New Product
               </button>
 
               {editingId && (
-                <div className="bg-[#10b981]/10 border border-[#10b981]/25 text-[#10b981] px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-between">
+                <div className="bg-[#10b981]/10 border border-[#10b981]/25 text-[#10b981] px-4 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-between gap-3 shrink-0">
                   <span>Editing Mode</span>
-                  <button onClick={resetForm} className="text-neutral-400 hover:text-white">
+                  <button onClick={resetForm} className="text-neutral-400 hover:text-white cursor-pointer">
                     <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -386,7 +387,7 @@ export default function AdminPanel({ onClose }) {
             </aside>
 
             {/* Sub-panels View */}
-            <main className="flex-1 bg-neutral-900 border border-neutral-800 rounded-3xl p-6 shadow-xl min-h-[500px]">
+            <main className="flex-1 bg-neutral-900 border border-neutral-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl min-h-[500px]">
 
               {/* TAB A: OVERVIEW / METRICS */}
               {activeTab === 'dashboard' && (
@@ -397,22 +398,22 @@ export default function AdminPanel({ onClose }) {
                   </div>
 
                   {/* Stat Cards */}
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-2xl flex flex-col gap-2">
-                      <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Total Products</span>
-                      <span className="text-3xl font-black text-white">{totalProducts}</span>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="bg-neutral-950 border border-neutral-800 p-4 sm:p-5 rounded-2xl flex flex-col gap-1.5">
+                      <span className="text-[9px] sm:text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Total Products</span>
+                      <span className="text-2xl sm:text-3xl font-black text-white">{totalProducts}</span>
                     </div>
-                    <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-2xl flex flex-col gap-2">
-                      <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Categories</span>
-                      <span className="text-3xl font-black text-white">{totalCategories}</span>
+                    <div className="bg-neutral-950 border border-neutral-800 p-4 sm:p-5 rounded-2xl flex flex-col gap-1.5">
+                      <span className="text-[9px] sm:text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Categories</span>
+                      <span className="text-2xl sm:text-3xl font-black text-white">{totalCategories}</span>
                     </div>
-                    <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-2xl flex flex-col gap-2">
-                      <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Subcategories</span>
-                      <span className="text-3xl font-black text-white">{subcategoryCount}</span>
+                    <div className="bg-neutral-950 border border-neutral-800 p-4 sm:p-5 rounded-2xl flex flex-col gap-1.5">
+                      <span className="text-[9px] sm:text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Subcategories</span>
+                      <span className="text-2xl sm:text-3xl font-black text-white">{subcategoryCount}</span>
                     </div>
-                    <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-2xl flex flex-col gap-2">
-                      <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Avg Base Price</span>
-                      <span className="text-3xl font-black text-white">₹{averagePrice}</span>
+                    <div className="bg-neutral-950 border border-neutral-800 p-4 sm:p-5 rounded-2xl flex flex-col gap-1.5">
+                      <span className="text-[9px] sm:text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Avg Base Price</span>
+                      <span className="text-2xl sm:text-3xl font-black text-white">₹{averagePrice}</span>
                     </div>
                   </div>
 
@@ -484,18 +485,18 @@ export default function AdminPanel({ onClose }) {
                     <table className="w-full text-left text-xs border-collapse">
                       <thead>
                         <tr className="border-b border-neutral-800 text-neutral-400 font-extrabold uppercase bg-neutral-900/40">
-                          <th className="p-4 w-12">Image</th>
-                          <th className="p-4">Product Name</th>
-                          <th className="p-4">Category / Subcategory</th>
-                          <th className="p-4">Variants</th>
-                          <th className="p-4 text-right">Actions</th>
+                          <th className="p-3 sm:p-4 w-12">Image</th>
+                          <th className="p-3 sm:p-4">Product Name</th>
+                          <th className="p-3 sm:p-4 hidden sm:table-cell">Category / Subcategory</th>
+                          <th className="p-3 sm:p-4">Variants</th>
+                          <th className="p-3 sm:p-4 text-right">Actions</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-neutral-850">
                         {filteredInventory.length > 0 ? (
                           filteredInventory.map((p) => (
                             <tr key={p.id} className="hover:bg-neutral-900/20 transition-colors">
-                              <td className="p-4">
+                              <td className="p-3 sm:p-4">
                                 <div className="w-10 h-10 bg-white rounded-lg p-1 border border-neutral-850 flex items-center justify-center">
                                   <img
                                     src={p.image}
@@ -504,21 +505,24 @@ export default function AdminPanel({ onClose }) {
                                   />
                                 </div>
                               </td>
-                              <td className="p-4">
+                              <td className="p-3 sm:p-4">
                                 <div className="font-extrabold text-white text-sm">{p.name}</div>
+                                <div className="text-neutral-500 font-semibold text-[9px] mt-0.5 sm:hidden">
+                                  {p.subcategory}
+                                </div>
                                 {p.description && (
-                                  <div className="text-[10px] text-neutral-500 line-clamp-1 mt-0.5 max-w-[200px]">
+                                  <div className="text-[10px] text-neutral-500 line-clamp-1 mt-0.5 max-w-[180px]">
                                     {p.description}
                                   </div>
                                 )}
                               </td>
-                              <td className="p-4">
+                              <td className="p-3 sm:p-4 hidden sm:table-cell">
                                 <span className="bg-neutral-850 text-neutral-300 font-bold px-2 py-0.5 rounded text-[10px]">
                                   {categories.find((c) => c.id === p.category)?.name || p.category}
                                 </span>
                                 <div className="text-neutral-500 font-semibold text-[10px] mt-1">{p.subcategory}</div>
                               </td>
-                              <td className="p-4">
+                              <td className="p-3 sm:p-4">
                                 <div className="flex flex-col gap-1 max-w-[150px]">
                                   {p.variants.map((v) => (
                                     <span key={v.weight} className="text-neutral-400 text-[10px] font-mono leading-none">
@@ -530,8 +534,8 @@ export default function AdminPanel({ onClose }) {
                                   ))}
                                 </div>
                               </td>
-                              <td className="p-4 text-right">
-                                <div className="flex items-center justify-end gap-2">
+                              <td className="p-3 sm:p-4 text-right">
+                                <div className="flex items-center justify-end gap-1.5 sm:gap-2">
                                   <button
                                     onClick={() => startEditProduct(p)}
                                     className="p-2 bg-neutral-900 hover:bg-neutral-850 text-neutral-300 rounded-lg transition-colors border border-neutral-800 cursor-pointer"
@@ -700,38 +704,46 @@ export default function AdminPanel({ onClose }) {
 
                         <div className="flex flex-col gap-2">
                           {formVariants.map((variant, index) => (
-                            <div key={index} className="flex items-center gap-2 bg-neutral-950 p-2 border border-neutral-850 rounded-xl">
-                              <input
-                                type="text"
-                                required
-                                placeholder="Weight (e.g. 1kg, 500g, 1 pc)"
-                                value={variant.weight}
-                                onChange={(e) => handleVariantChange(index, 'weight', e.target.value)}
-                                className="flex-1 bg-neutral-900 border border-neutral-800 pl-3 pr-3 py-2 rounded-lg text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[#10b981]/40 font-semibold"
-                              />
-                              <input
-                                type="number"
-                                required
-                                placeholder="Price (₹)"
-                                value={variant.price}
-                                onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
-                                className="w-24 bg-neutral-900 border border-neutral-800 pl-3 pr-3 py-2 rounded-lg text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[#10b981]/40 font-semibold"
-                              />
-                              <input
-                                type="number"
-                                placeholder="MRP (₹) (Optional)"
-                                value={variant.mrp}
-                                onChange={(e) => handleVariantChange(index, 'mrp', e.target.value)}
-                                className="w-28 bg-neutral-900 border border-neutral-800 pl-3 pr-3 py-2 rounded-lg text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[#10b981]/40 font-semibold"
-                              />
-                              <button
-                                type="button"
-                                onClick={() => removeVariantRow(index)}
-                                disabled={formVariants.length === 1}
-                                className="p-2 text-neutral-500 hover:text-red-400 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
-                              >
-                                <X className="w-4 h-4" />
-                              </button>
+                            <div key={index} className="grid grid-cols-12 gap-2 bg-neutral-950 p-2.5 sm:p-2 border border-neutral-850 rounded-xl items-center animate-in fade-in duration-150">
+                              <div className="col-span-12 sm:col-span-5">
+                                <input
+                                  type="text"
+                                  required
+                                  placeholder="Weight (e.g. 1kg, 500g)"
+                                  value={variant.weight}
+                                  onChange={(e) => handleVariantChange(index, 'weight', e.target.value)}
+                                  className="w-full bg-neutral-900 border border-neutral-800 pl-3 pr-3 py-2 rounded-lg text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[#10b981]/40 font-semibold"
+                                />
+                              </div>
+                              <div className="col-span-5 sm:col-span-3">
+                                <input
+                                  type="number"
+                                  required
+                                  placeholder="Price (₹)"
+                                  value={variant.price}
+                                  onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
+                                  className="w-full bg-neutral-900 border border-neutral-800 pl-3 pr-3 py-2 rounded-lg text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[#10b981]/40 font-semibold"
+                                />
+                              </div>
+                              <div className="col-span-5 sm:col-span-3">
+                                <input
+                                  type="number"
+                                  placeholder="MRP (₹) (Opt)"
+                                  value={variant.mrp}
+                                  onChange={(e) => handleVariantChange(index, 'mrp', e.target.value)}
+                                  className="w-full bg-neutral-900 border border-neutral-800 pl-3 pr-3 py-2 rounded-lg text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[#10b981]/40 font-semibold"
+                                />
+                              </div>
+                              <div className="col-span-2 sm:col-span-1 flex justify-center">
+                                <button
+                                  type="button"
+                                  onClick={() => removeVariantRow(index)}
+                                  disabled={formVariants.length === 1}
+                                  className="p-2 text-neutral-500 hover:text-red-400 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                           ))}
                         </div>

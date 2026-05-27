@@ -308,7 +308,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
               </p>
               <button
                 onClick={() => setActiveCategory('atta-dal')}
-                className="mt-2 bg-white hover:bg-white text-neutral-900 px-10 py-5 rounded-xl font-extrabold text-sm tracking-wide shadow-lg shadow-white-950/20 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+                className="mt-2 bg-white hover:bg-white text-neutral-900 px-6 py-3 sm:px-10 sm:py-4.5 rounded-xl font-extrabold text-xs sm:text-sm tracking-wide shadow-lg shadow-white-950/20 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
               >
                 Shop now
               </button>
@@ -334,7 +334,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                   <div
                     key={card.name}
                     onClick={() => handleCategoryClick({ id: card.categoryId })}
-                    className={`group relative overflow-hidden border rounded-2xl p-4 flex flex-col justify-between min-h-[150px] md:min-h-[170px] gap-6 cursor-pointer transition-all duration-200 shadow-xs ${card.color}`}
+                    className={`group relative overflow-hidden border rounded-2xl p-3 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[150px] md:min-h-[170px] gap-4 cursor-pointer transition-all duration-200 shadow-xs ${card.color}`}
                   >
                     {/* Background Image with custom opacity overlay */}
                     {card.bgImage && (
@@ -342,16 +342,17 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                         <img
                           src={card.bgImage}
                           alt=""
+                          className="w-full h-full object-cover rounded-2xl"
                         />
                         <div className="absolute inset-0 bg-white/10" />
                       </div>
                     )}
 
                     {/* Content Container */}
-                    <div className="relative z-20 flex flex-col  h-full gap-6">
+                    <div className="relative z-20 flex flex-col h-full justify-between gap-3">
                       <div>
-                        <h3 className="font-extrabold text-sm md:text-base text-black leading-snug">{card.name}</h3>
-                        <p className="text-xs md:text-sm text-blue font-semibold mt-1 leading-normal">{card.desc}</p>
+                        <h3 className="font-extrabold text-xs sm:text-sm md:text-base text-black leading-snug">{card.name}</h3>
+                        <p className="text-[10px] sm:text-xs md:text-sm text-neutral-800 font-semibold mt-0.5 sm:mt-1 leading-normal">{card.desc}</p>
                       </div>
                     </div>
                   </div>
@@ -373,7 +374,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                   className="flex flex-col items-center group cursor-pointer"
                 >
                   <div
-                    className="w-16 h-16 md:w-26 md:h-26 rounded-2xl flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 group-hover:shadow-md relative overflow-hidden border border-neutral-200/50 bg-neutral-50"
+                    className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 group-hover:shadow-md relative overflow-hidden border border-neutral-200/50 bg-neutral-50"
                   >
                     <img
                       src={cat.image}
@@ -382,7 +383,7 @@ export default function MainDashboard({ activeCategory, setActiveCategory, searc
                     />
                     <div className="absolute inset-0 bg-neutral-950/5 group-hover:bg-transparent transition-colors duration-200" />
                   </div>
-                  <span className="text-[10px] md:text-[15px] font-black text-neutral-700 group-hover:text-[#0c831f] text-center leading-snug mt-2 line-clamp-2 px-1 transition-colors">
+                  <span className="text-[9px] sm:text-xs md:text-sm font-black text-neutral-700 group-hover:text-[#0c831f] text-center leading-snug mt-1.5 sm:mt-2 line-clamp-2 px-1 transition-colors">
                     {cat.name}
                   </span>
                 </div>
