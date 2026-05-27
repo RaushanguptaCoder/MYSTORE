@@ -3,6 +3,7 @@ import Header from './components/Header';
 import MainDashboard from './components/MainDashboard';
 import CartDrawer from './components/CartDrawer';
 import AdminPanel from './components/AdminPanel';
+import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
 
@@ -41,6 +42,13 @@ function AppContent() {
           setSearchQuery={setSearchQuery}
         />
       </main>
+
+      {/* Footer */}
+      <Footer onCategoryClick={(categoryId) => {
+        setActiveCategory(categoryId);
+        setSearchQuery('');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }} />
 
       {/* Cart Drawer */}
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
